@@ -1,0 +1,66 @@
+---
+- name: install apache web server
+  hosts: all
+  become: yes
+  vars:
+    name1: firewalld
+    name2: firewalld
+    usr_list:
+      - prasad
+      - uday
+    runonly: true
+  tasks:
+    - name: insatll apche here
+      yum:
+        name: "{{ name1 }}"
+        state: present
+      register: out_put
+      tags: install
+      notify: restart firewalld
+    - name: print output
+      debug:
+        var: out_put
+    - name: start the service
+      ansible.builtin.service:
+        name: "{{ name2 }}"
+        state: started
+      register: out_ser
+      tags: rest
+    - name: print output
+      debug:
+        var: out_ser
+    - name: restrt firewalld
+      service:
+        name: "{{ name1 }}"
+        state: restarted
+      register: res_out
+    - name: print output of restart
+      debug:
+        var: res_out
+
+    - name: create user
+      user:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ usr_list }}"
+      register: out_out
+      tags: create
+      when: runonly
+    - name: print user output
+      debug:
+        var: out_out
+
+    - name: create file 
+      file:
+        path: /tmp/prasad2.txt
+        state: touch
+    - name: create seconf file
+      file:
+        path: /tmp/prdsf.txt
+        state: touch
+      register: file_out
+      tags: filecreate
+    - name: print output
+      debug:
+        var: file_out
+

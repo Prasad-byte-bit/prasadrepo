@@ -1,0 +1,9 @@
+- name: Use vaulted variable
+  hosts: localhost
+  vars_files:
+    - secrets.yml
+  tasks:
+    - name: Show DB password
+      debug:
+        msg: "The DB password is {{ ssword }}"
+

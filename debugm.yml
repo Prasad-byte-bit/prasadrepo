@@ -1,0 +1,8 @@
+---
+- name: Show memory details
+  hosts: all
+  tasks:
+    - name: Show memory details
+      debug:
+        msg: "Memory Total: {{ ansible_memory_mb.real.total }} MB, Memory Free: {{ ansible_memory_mb.real.free }} MB"
+

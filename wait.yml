@@ -1,0 +1,11 @@
+---
+- name: Wait for a file to be created
+  hosts: all
+  become: true
+  tasks:
+    - name: Wait for /tmp/ready.txt to appear
+      wait_for:
+        path: /home/ansible/one.txt
+        state: present
+        timeout: 60
+

@@ -1,0 +1,12 @@
+---
+- name: Gather disk usage information using df command
+  hosts: all
+  tasks:
+    - name: Getting disk usage details
+      command: df -h /
+      register: disk_usage
+
+    - name: Print disk usage output
+      debug:
+        var: disk_usage.stdout
+

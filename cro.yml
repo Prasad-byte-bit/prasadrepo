@@ -1,0 +1,11 @@
+- name: Setup cron job to run Ansible playbook every hour
+  hosts: localhost
+  become: true
+  tasks:
+    - name: Add cron job for memory check
+      cron:
+        name: "Hourly Memory Check"
+        minute: "*/2"
+        job: "~/.local/bin/ansible-playbook /home/ansible/fundamentals/run_python_script.yml -i /home/ansible/fundamentals/inv.ini >> /home/ansible/fundamentals/memory_check.log 2>&1"
+        user: ansible
+

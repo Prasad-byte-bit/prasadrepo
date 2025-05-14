@@ -1,0 +1,5 @@
+# host_vars/centos1.yml
+name: "Web Server"
+location: "New York"
+role: "Frontend"
+

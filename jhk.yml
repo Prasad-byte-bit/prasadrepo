@@ -1,0 +1,12 @@
+- name: Install packages with loop
+  hosts: webserver
+  tasks:
+    - name: Install multiple packages
+      ansible.builtin.apt:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - git
+        - curl
+        - vim
+

@@ -1,0 +1,13 @@
+---
+- name: Manage services
+  hosts: all
+  become: true
+  tasks:
+    - name: Ensure nginx is running
+      service:
+        name: nginx
+        state: started
+      register: serv_out
+    - name: output of service
+      debug:
+        var: serv_out

@@ -1,0 +1,5 @@
+# group_vars/webserver.yml
+name: "Web Server"
+location: "New York"
+role: "Frontend"
+

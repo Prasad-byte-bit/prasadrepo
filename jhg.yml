@@ -1,0 +1,11 @@
+- name: Conditional with variable
+  hosts: webserver
+  vars:
+    install_nginx: false
+  tasks:
+    - name: Install Nginx only if install_nginx is true
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+      when: install_nginx
+

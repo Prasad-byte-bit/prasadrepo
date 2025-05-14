@@ -1,0 +1,52 @@
+---
+- name: Simple Apache Web Server Setup
+  hosts: webserver
+  become: yes
+  vars:
+    apache_pkg: httpd                # Package name for Apache
+    web_root: /var/www/html
+    index_content: "Welcome to our website!"
+    create_users: true
+    user_list:
+      - alice
+      - bob
+
+  tasks:
+
+    - name: Install Apache
+      ansible.builtin.yum:
+        name: "{{ apache_pkg }}"
+        state: present
+      tags: install
+
+    - name: Start and enable Apache service
+      ansible.builtin.service:
+        name: "{{ apache_pkg }}"
+        state: started
+        enabled: yes
+      tags: start
+      notify: restart apache  # Triggers a handler
+
+    - name: Create index.html with custom content
+      ansible.builtin.copy:
+        content: "{{ index_content }}"
+        dest: "{{ web_root }}/index.html"
+      tags: web
+
+    - name: Create users
+      ansible.builtin.user:
+        name: "{{ item }}"
+        state: present 
+      register: out_put
+      loop: "{{ user_list }}"
+      when: create_users
+      tags: users
+    - name: print output of users
+      debug:
+        var: out_put
+  handlers:
+    - name: restart apache
+      ansible.builtin.service:
+        name: "{{ apache_pkg }}"
+        state: restarted
+

@@ -1,0 +1,8 @@
+---
+- name: Gather disk usage information using df command
+  hosts: all
+  tasks:
+    - name: getting disk usge details
+      command: df -h /
+      register: disk_usage
+

@@ -1,0 +1,27 @@
+---
+- name: UFW handler example
+  hosts: all
+  become: yes
+  tasks:
+    - name: Ensure ufw is installed
+      apt:
+        name: ufw
+        state: present
+
+    - name: Allow SSH
+      ufw:
+        rule: allow
+        name: OpenSSH
+      notify: Reload ufw
+
+    - name: Allow HTTP
+      ufw:
+        rule: allow
+        port: 80
+        proto: tcp
+      notify: Reload ufw
+
+  handlers:
+    - name: Reload ufw
+      command: ufw reload
+

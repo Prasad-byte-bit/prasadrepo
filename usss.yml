@@ -1,0 +1,13 @@
+- name: Create users conditionally
+  hosts: webserver
+  become: true
+  tasks:
+    - name: Create user if active is true
+      ansible.builtin.user:
+        name: "{{ item.name }}"
+        state: present
+      loop:
+        - { name: "alice", active: true }
+        - { name: "bob", active: false }
+      when: item.active
+

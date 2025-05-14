@@ -1,0 +1,15 @@
+---
+- name: Set a fact and conditionally install nginx
+  hosts: all
+  become: true
+  tasks:
+    - name: Set a custom fact
+      set_fact:
+        my_var: "Hell, Ansible!"
+
+    - name: Install nginx if my_var matches
+      yum:
+        name: nginx
+        state: present
+      when: my_var == "Hello, Ansible!"
+

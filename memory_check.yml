@@ -1,0 +1,38 @@
+---
+- name: Ensure Python3, pip3, psutil, and run script
+  hosts: all
+  become: yes
+  tasks:
+
+    - name: Install Python 3 and pip on CentOS
+      yum:
+        name:
+          - python3
+          - python3-pip
+        state: present
+
+    - name: Check if psutil is already installed
+      shell: python3 -c "import psutil"
+      register: psutil_check
+      ignore_errors: yes
+
+    - name: Install psutil if not present
+      pip:
+        name: psutil
+        executable: pip3
+      when: psutil_check.rc != 0
+
+    - name: Copy memory script to remote machine
+      copy:
+        src: get_memory.py
+        dest: /tmp/get_memory.py
+        mode: '0755'
+
+    - name: Run memory script
+      command: python3 /tmp/get_memory.py
+      register: memory_output
+
+    - name: Show memory output
+      debug:
+        var: memory_output.stdout_lines
+

@@ -1,0 +1,12 @@
+---
+- name: Check if the server is up
+  hosts: all
+  tasks:
+    - name: Ping the server
+      ping:
+      register: ping_status
+
+    - name: Show ping result
+      debug:
+        var: ping_status
+

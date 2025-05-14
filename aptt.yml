@@ -1,0 +1,14 @@
+---
+- name: Install a package on Ubuntu
+  hosts: all
+  become: true
+  tasks:
+    - name: Install 'htop'
+      yum:
+        name: htop
+        state: present
+      register: htp_out
+    - name: get output
+      debug:
+        var: htp_out
+

@@ -1,0 +1,12 @@
+- name: Create files with loop
+  hosts: webserver
+  tasks:
+    - name: Create empty files
+      ansible.builtin.file:
+        path: "/tmp/{{ item }}"
+        state: touch
+      loop:
+        - prasad1.txt
+        - ntr2.txt
+        - rpant3.txt
+

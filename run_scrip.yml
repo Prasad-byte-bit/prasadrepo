@@ -1,0 +1,11 @@
+---
+- name: Run Python script on localhost
+  hosts: localhost
+  connection: local
+  tasks:
+    - name: Run local Python script
+      script: script.py
+      register: python_out
+    - name: print output of task
+      debug:
+        var: python_out

@@ -1,0 +1,11 @@
+- name: Create a user using host-scope variables
+  hosts: centos1
+  become: yes
+
+  tasks:
+    - name: Create the user
+      user:
+        name: "{{a}}"
+        shell: "{{ e }}"
+        comment: "{{ b }}"
+

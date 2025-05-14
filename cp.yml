@@ -1,0 +1,9 @@
+---
+- name: Copy a file to the remote server
+  hosts: all
+  tasks:
+    - name: Copy a local file to remote
+      copy:
+        src: /home/ansible/fundamentals/one.txt
+        dest: /home/ansible
+

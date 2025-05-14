@@ -1,0 +1,9 @@
+- name: Demo Playbook to show variable precedence
+  hosts: all
+  vars:
+    message: "This is from play scope passing in playbook"
+  tasks:
+    - name: Show the message variable
+      debug:
+        msg: "{{ message }}"
+

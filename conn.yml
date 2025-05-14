@@ -1,0 +1,11 @@
+- name: Conditional task example
+  hosts: webserver
+  tasks:
+    - name: Print message only if OS is Ubuntu
+      ansible.builtin.debug:
+        msg: "This machine is Ubuntu"
+      when: ansible_facts['distribution'] == "Ubuntu"
+      register: out_put
+    - name: print output
+      debug:
+        var: out_put

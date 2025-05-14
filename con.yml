@@ -1,0 +1,15 @@
+---
+- name: Install Nginx on Ubuntu only
+  hosts: all
+  become: true
+  tasks:
+    - name: Install Nginx if OS is Debian/Ubuntu
+      apt:
+        name: nginx
+        state: present
+      when: ansible_facts['os_family'] == 'CentOS Linux'
+      register: out_put
+    - name: print output
+      debug:
+        var: out_put
+

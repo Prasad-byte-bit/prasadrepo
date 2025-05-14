@@ -1,0 +1,12 @@
+---
+- name: Set file permissions
+  hosts: all
+  tasks:
+    - name: Change file permissions
+      file:
+        path: /home/ansible/one.txt
+        mode: '0644'
+      register: per_out
+    - name:
+      debug:
+        var: per_out

@@ -1,0 +1,11 @@
+---
+- name: Clone a git repository
+  hosts: all
+  become: true
+  tasks:
+    - name: Clone a repository from GitHub
+      git:
+        repo: https://github.com/ansible/ansible-examples.git
+        dest: /home/ansible/prasad
+
+

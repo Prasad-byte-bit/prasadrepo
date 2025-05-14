@@ -1,0 +1,22 @@
+---
+- name: Create a file and log it using a handler (with log file creation)
+  hosts: all
+  become: yes
+  tasks:
+    - name: Create /tmp/hello.txt with content
+      copy:
+        content: "Hello from Ansible!\n"
+        dest: /tmp/hello.txt
+
+    - name: Ensure log file exists
+      file:
+        path: /tmp/ansible_actions.log
+        state: touch
+        mode: '0644'
+      #notify: Log file creation
+  handlers:
+    - name: Log file creation
+      lineinfile:
+        path: /tmp/ansible_actions.log
+        line: "File /tmp/hello.txt was created or updated on prasad1 {{ inventory_hostname }}"
+

@@ -1,0 +1,9 @@
+---
+- name: Copy a templated file to the remote server
+  hosts: all
+  tasks:
+    - name: Deploy a configuration file from template
+      template:
+        src: /home/ansible/fundamentals/templete.j2
+        dest: /home/ansible
+

@@ -1,0 +1,11 @@
+---
+- name: Run command on remote server
+  hosts: all
+  tasks:
+    - name: Run the "uptime" command
+      command: uptime
+      register: uptim_state
+    - name:
+      debug:
+        var: uptim_state
+

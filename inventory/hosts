@@ -5,11 +5,9 @@ hellomsg=Hello World from inventory file
 centos_east
 centos_west
 
-[centos_east]
-centos1
-
 [centos_west]
 centos2
+centos1
 
 [control]
 ansible ansible_host=192.168.0.188

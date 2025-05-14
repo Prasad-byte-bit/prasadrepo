@@ -1,0 +1,13 @@
+---
+- name: Create a group on remote server
+  hosts: all
+  become: true
+  tasks:
+    - name: Create group "admin"
+      group:
+        name: admin
+        state: present
+      register: grp_out
+    - name: getting result og grp
+      debug:
+        var: grp_out

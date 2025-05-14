@@ -1,0 +1,17 @@
+- name: Test multiple tasks
+  hosts: all
+  vars:
+    onlyrun: true
+  become: yes
+  tasks:
+    - name: Task 1 - Create file A
+      file:
+        path: /tmp/fileA.txt
+        state: touch
+
+    - name: Task 2 - Create file B
+      file:
+        path: /tmp/fileB.txt
+        state: touch
+      when: "{{ onlyrun }}"
+

@@ -1,0 +1,11 @@
+---
+- name: Manage firewall rules
+  hosts: all
+  become: true
+  tasks:
+    - name: Allow HTTP service through the firewall
+      firewalld:
+        service: http
+        permanent: yes
+        state: enabled
+

@@ -1,0 +1,8 @@
+---
+- name: Deploy Apache Web Server and Website
+  hosts: webserver
+  become: yes
+  roles:
+    - apache
+    - website
+

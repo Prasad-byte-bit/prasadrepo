@@ -1,0 +1,15 @@
+---
+- name: using play scope var
+  hosts: all
+  become: true
+  vars:
+    a: httpd
+    b: present
+    c: no
+  tasks:
+    - name: install
+      apt:
+        name: "{{ a }}"
+        state: "{{ b }}"
+        update_cache: "{{ c }}"
+

@@ -1,6 +1,2 @@
-# vars file for apache
 ---
-# Directory for Apache virtual host config file.
-apache_vhost_config_dir: "{{ '/etc/httpd/conf.d' if ansible_facts['os_family']|lower == 'redhat' else '/etc/apache2/sites-available' }}"
-# Directory for virtual host log files.
-apache_log_dir: "{{ 'logs' if ansible_facts['os_family']|lower == 'redhat' else '${APACHE_LOG_DIR}' }}"
+# vars file for apache
