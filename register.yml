@@ -1,7 +1,7 @@
 # Playbook that shows how to use the "register" statement to access a
 # task's returned results.
 ---
-- hosts: centos1
+- hosts: all
   vars:
     searchpath: /lab
   tasks:
